@@ -1,0 +1,1635 @@
+<!doctype html>
+<html lang="no">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Espen Tennis Academy — Tennis for alle aldre</title>
+    <meta
+      name="description"
+      content="Espen Tennis Academy tilbyr fysiske kurs, digitale apper og bedriftstennis — fra 3 år til elitenivå. Etablert metodikk, moderne plattform."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0a0f0a;
+        --bg-elev: #121a13;
+        --bg-soft: #182218;
+        --ink: #f5f3ee;
+        --ink-dim: #9fa99c;
+        --ink-soft: #6d756a;
+        --clay: #c96f3f;
+        --clay-soft: #e8a47a;
+        --grass: #3d5a3d;
+        --line: rgba(245, 243, 238, 0.08);
+        --line-strong: rgba(245, 243, 238, 0.18);
+        --radius: 14px;
+        --radius-lg: 22px;
+        --shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.6);
+        --max: 1200px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Inter", system-ui, -apple-system, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        font-feature-settings: "ss01", "cv11";
+        -webkit-font-smoothing: antialiased;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Fraunces", Georgia, serif;
+        font-weight: 400;
+        letter-spacing: -0.02em;
+        margin: 0;
+        font-feature-settings: "ss01";
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font-family: inherit;
+        cursor: pointer;
+        border: none;
+        background: none;
+        color: inherit;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      /* ============ NAV ============ */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(18px) saturate(1.4);
+        -webkit-backdrop-filter: blur(18px) saturate(1.4);
+        background: rgba(10, 15, 10, 0.72);
+        border-bottom: 1px solid var(--line);
+      }
+      .nav-inner {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 18px 28px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "Fraunces", serif;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+      }
+      .logo-mark {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle at 30% 30%,
+          var(--clay-soft),
+          var(--clay) 60%,
+          #8a4822 100%
+        );
+        box-shadow: inset -2px -3px 6px rgba(0, 0, 0, 0.3),
+          0 0 0 1px rgba(255, 255, 255, 0.05);
+        position: relative;
+      }
+      .logo-mark::before,
+      .logo-mark::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        border-top: 1.2px solid rgba(255, 255, 255, 0.6);
+        border-bottom: 1.2px solid rgba(255, 255, 255, 0.6);
+        transform: rotate(-18deg) scaleX(0.35);
+      }
+      .logo-mark::after {
+        transform: rotate(18deg) scaleX(0.35);
+      }
+      .logo em {
+        font-style: normal;
+        color: var(--ink-dim);
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        margin-left: 2px;
+      }
+      @media (max-width: 520px) {
+        .logo em {
+          display: none;
+        }
+        .logo {
+          font-size: 15px;
+          gap: 8px;
+        }
+        .logo-mark {
+          width: 26px;
+          height: 26px;
+        }
+        .nav-inner {
+          padding: 14px 20px;
+          gap: 12px;
+        }
+        .nav-cta {
+          padding: 9px 14px;
+          font-size: 12px;
+        }
+      }
+      .nav-links {
+        display: flex;
+        gap: 28px;
+        font-size: 14px;
+        color: var(--ink-dim);
+      }
+      .nav-links a {
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--ink);
+      }
+      .nav-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 18px;
+        border-radius: 999px;
+        background: var(--ink);
+        color: var(--bg);
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: -0.005em;
+        transition: transform 0.2s, background 0.2s;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .nav-cta:hover {
+        background: var(--clay-soft);
+        transform: translateY(-1px);
+      }
+      @media (max-width: 760px) {
+        .nav-links {
+          display: none;
+        }
+      }
+
+      /* ============ HERO ============ */
+      .hero {
+        position: relative;
+        overflow: hidden;
+        border-bottom: 1px solid var(--line);
+      }
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse 80% 60% at 80% 20%,
+            rgba(201, 111, 63, 0.18),
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse 70% 50% at 10% 80%,
+            rgba(61, 90, 61, 0.22),
+            transparent 60%
+          ),
+          linear-gradient(180deg, #0a0f0a 0%, #0d130c 100%);
+      }
+      .hero-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(245, 243, 238, 0.025) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(245, 243, 238, 0.025) 1px, transparent 1px);
+        background-size: 40px 40px;
+        mask-image: radial-gradient(
+          ellipse 60% 50% at 50% 50%,
+          black,
+          transparent 80%
+        );
+      }
+      .hero-inner {
+        position: relative;
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 90px 28px 120px;
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+      @media (max-width: 900px) {
+        .hero-inner {
+          grid-template-columns: 1fr;
+          padding: 60px 24px 80px;
+          gap: 40px;
+        }
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 12px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--clay-soft);
+        font-weight: 500;
+        margin-bottom: 28px;
+      }
+      .eyebrow::before {
+        content: "";
+        width: 26px;
+        height: 1px;
+        background: var(--clay);
+      }
+      .hero h1 {
+        font-size: clamp(42px, 6vw, 78px);
+        line-height: 1.02;
+        margin-bottom: 28px;
+        font-weight: 400;
+      }
+      .hero h1 em {
+        font-style: italic;
+        color: var(--clay-soft);
+        font-weight: 400;
+      }
+      .hero p {
+        font-size: 18px;
+        color: var(--ink-dim);
+        max-width: 520px;
+        margin: 0 0 36px;
+      }
+      .hero-cta {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 16px 26px;
+        border-radius: 999px;
+        font-size: 15px;
+        font-weight: 500;
+        transition: all 0.2s;
+      }
+      .btn-primary {
+        background: var(--clay);
+        color: white;
+      }
+      .btn-primary:hover {
+        background: var(--clay-soft);
+        transform: translateY(-1px);
+      }
+      .btn-ghost {
+        background: transparent;
+        color: var(--ink);
+        border: 1px solid var(--line-strong);
+      }
+      .btn-ghost:hover {
+        border-color: var(--ink);
+      }
+      .btn svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .hero-visual {
+        position: relative;
+        aspect-ratio: 4/5;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        background:
+          linear-gradient(
+            135deg,
+            rgba(201, 111, 63, 0.3),
+            rgba(61, 90, 61, 0.3)
+          ),
+          repeating-linear-gradient(
+            45deg,
+            #2a1f18,
+            #2a1f18 3px,
+            #1e1713 3px,
+            #1e1713 6px
+          );
+        box-shadow: var(--shadow);
+      }
+      .hero-visual::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse at 50% 40%,
+            rgba(255, 220, 180, 0.2),
+            transparent 60%
+          );
+      }
+      .court {
+        position: absolute;
+        inset: 12%;
+        border: 2px solid rgba(245, 243, 238, 0.85);
+        border-radius: 2px;
+      }
+      .court::before,
+      .court::after {
+        content: "";
+        position: absolute;
+        background: rgba(245, 243, 238, 0.85);
+      }
+      .court::before {
+        left: 0;
+        right: 0;
+        top: 50%;
+        height: 2px;
+        transform: translateY(-1px);
+      }
+      .court::after {
+        left: 50%;
+        top: 20%;
+        bottom: 20%;
+        width: 2px;
+        transform: translateX(-1px);
+      }
+      .court-inner {
+        position: absolute;
+        inset: 20%;
+        border: 2px solid rgba(245, 243, 238, 0.85);
+      }
+      .court-inner::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: rgba(245, 243, 238, 0.85);
+        transform: translateX(-1px);
+      }
+      .ball {
+        position: absolute;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle at 30% 30%,
+          #e8f07a,
+          #c9d945 60%,
+          #96a82d
+        );
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4),
+          inset -2px -3px 4px rgba(0, 0, 0, 0.2);
+        top: 40%;
+        left: 55%;
+        animation: bounce 2.4s infinite ease-in-out;
+      }
+      .ball::before,
+      .ball::after {
+        content: "";
+        position: absolute;
+        inset: 2px;
+        border-radius: 50%;
+        border-top: 1px solid rgba(255, 255, 255, 0.7);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+        transform: rotate(-25deg) scaleX(0.3);
+      }
+      .ball::after {
+        transform: rotate(25deg) scaleX(0.3);
+      }
+      @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-14px); }
+      }
+
+      .hero-badge {
+        position: absolute;
+        bottom: 22px;
+        left: 22px;
+        right: 22px;
+        padding: 18px 22px;
+        background: rgba(10, 15, 10, 0.75);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid var(--line-strong);
+        border-radius: 12px;
+        font-size: 13px;
+        color: var(--ink);
+      }
+      .hero-badge strong {
+        display: block;
+        font-family: "Fraunces", serif;
+        font-size: 22px;
+        font-weight: 500;
+        color: var(--clay-soft);
+        margin-bottom: 2px;
+      }
+
+      /* ============ STRIP ============ */
+      .strip {
+        border-bottom: 1px solid var(--line);
+        background: var(--bg-elev);
+      }
+      .strip-inner {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 36px 28px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 40px;
+      }
+      @media (max-width: 760px) {
+        .strip-inner {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 28px;
+        }
+      }
+      .stat {
+        text-align: left;
+      }
+      .stat-n {
+        font-family: "Fraunces", serif;
+        font-size: 36px;
+        font-weight: 400;
+        color: var(--ink);
+        line-height: 1;
+        margin-bottom: 6px;
+        letter-spacing: -0.03em;
+      }
+      .stat-n em {
+        color: var(--clay-soft);
+        font-style: normal;
+      }
+      .stat-l {
+        font-size: 13px;
+        color: var(--ink-dim);
+        letter-spacing: 0.02em;
+      }
+
+      /* ============ SECTION SHELL ============ */
+      section {
+        padding: 120px 28px;
+        position: relative;
+      }
+      .section-inner {
+        max-width: var(--max);
+        margin: 0 auto;
+      }
+      .section-head {
+        max-width: 760px;
+        margin-bottom: 72px;
+      }
+      .section-head h2 {
+        font-size: clamp(34px, 4.4vw, 54px);
+        line-height: 1.05;
+        margin-bottom: 20px;
+      }
+      .section-head h2 em {
+        color: var(--clay-soft);
+        font-style: italic;
+      }
+      .section-head p {
+        font-size: 18px;
+        color: var(--ink-dim);
+        max-width: 620px;
+        margin: 0;
+      }
+      .section-label {
+        font-size: 12px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        margin-bottom: 24px;
+      }
+      @media (max-width: 760px) {
+        section {
+          padding: 80px 24px;
+        }
+        .section-head {
+          margin-bottom: 48px;
+        }
+      }
+
+      /* ============ PILLARS ============ */
+      .pillars {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+      @media (max-width: 900px) {
+        .pillars {
+          grid-template-columns: 1fr;
+        }
+      }
+      .pillar {
+        padding: 40px 32px;
+        background: var(--bg-elev);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        min-height: 420px;
+      }
+      .pillar:hover {
+        border-color: var(--line-strong);
+        transform: translateY(-4px);
+      }
+      .pillar-n {
+        font-family: "Fraunces", serif;
+        font-size: 13px;
+        color: var(--clay-soft);
+        margin-bottom: 20px;
+        letter-spacing: 0.05em;
+      }
+      .pillar h3 {
+        font-size: 32px;
+        margin-bottom: 14px;
+        letter-spacing: -0.015em;
+      }
+      .pillar > p {
+        color: var(--ink-dim);
+        font-size: 15px;
+        margin: 0 0 28px;
+      }
+      .pillar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 32px;
+        flex-grow: 1;
+      }
+      .pillar li {
+        font-size: 14px;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--ink);
+      }
+      .pillar li:last-child {
+        border-bottom: none;
+      }
+      .pillar li span {
+        color: var(--ink-dim);
+        font-size: 12px;
+      }
+      .pillar-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        color: var(--clay-soft);
+        font-weight: 500;
+        transition: gap 0.2s;
+      }
+      .pillar:hover .pillar-cta {
+        gap: 12px;
+      }
+
+      /* ============ APPS ============ */
+      .apps-bg {
+        background: linear-gradient(180deg, var(--bg) 0%, #0d120d 100%);
+      }
+      .apps {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+      }
+      @media (max-width: 760px) {
+        .apps {
+          grid-template-columns: 1fr;
+        }
+      }
+      .app-card {
+        padding: 36px;
+        background: var(--bg-elev);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        position: relative;
+        overflow: hidden;
+        min-height: 340px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: all 0.3s;
+      }
+      .app-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--card-accent, var(--clay));
+      }
+      .app-card:hover {
+        transform: translateY(-3px);
+        border-color: var(--line-strong);
+      }
+      .app-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 20px;
+      }
+      .app-age {
+        font-family: "Fraunces", serif;
+        font-size: 14px;
+        color: var(--card-accent, var(--clay-soft));
+        letter-spacing: 0.03em;
+      }
+      .app-status {
+        font-size: 11px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: var(--bg-soft);
+        color: var(--ink-dim);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .app-status.live {
+        background: rgba(90, 160, 90, 0.18);
+        color: #9ed09e;
+      }
+      .app-status.soon {
+        background: rgba(201, 111, 63, 0.18);
+        color: var(--clay-soft);
+      }
+      .app-card h3 {
+        font-size: 30px;
+        margin: 18px 0 10px;
+      }
+      .app-card > p {
+        color: var(--ink-dim);
+        font-size: 14px;
+        margin: 0 0 20px;
+      }
+      .app-tags {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-bottom: 24px;
+      }
+      .app-tags span {
+        font-size: 11px;
+        padding: 5px 10px;
+        background: var(--bg-soft);
+        border-radius: 999px;
+        color: var(--ink-dim);
+      }
+      .app-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+        font-size: 13px;
+      }
+      .app-price {
+        color: var(--ink);
+        font-weight: 500;
+      }
+      .app-price span {
+        color: var(--ink-dim);
+        font-weight: 400;
+      }
+
+      /* ============ PHILOSOPHY ============ */
+      .philosophy {
+        background: var(--bg-elev);
+        border-block: 1px solid var(--line);
+      }
+      .philo-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+      @media (max-width: 900px) {
+        .philo-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+      }
+      .philo-quote {
+        font-family: "Fraunces", serif;
+        font-size: clamp(28px, 3.6vw, 40px);
+        line-height: 1.25;
+        font-weight: 400;
+        letter-spacing: -0.015em;
+        margin-bottom: 32px;
+      }
+      .philo-quote em {
+        font-style: italic;
+        color: var(--clay-soft);
+      }
+      .philo-attr {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding-top: 24px;
+        border-top: 1px solid var(--line);
+      }
+      .philo-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--clay), var(--grass));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Fraunces", serif;
+        font-size: 18px;
+        color: white;
+      }
+      .philo-attr-text strong {
+        display: block;
+        font-size: 15px;
+      }
+      .philo-attr-text span {
+        font-size: 13px;
+        color: var(--ink-dim);
+      }
+
+      .principles {
+        display: grid;
+        gap: 2px;
+        background: var(--line);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        overflow: hidden;
+      }
+      .principle {
+        padding: 22px 24px;
+        background: var(--bg-elev);
+        display: grid;
+        grid-template-columns: 40px 1fr;
+        gap: 18px;
+        align-items: flex-start;
+      }
+      .principle-n {
+        font-family: "Fraunces", serif;
+        font-size: 13px;
+        color: var(--clay-soft);
+        padding-top: 2px;
+      }
+      .principle h4 {
+        font-size: 16px;
+        font-weight: 500;
+        font-family: "Inter", sans-serif;
+        letter-spacing: -0.005em;
+        margin-bottom: 4px;
+      }
+      .principle p {
+        margin: 0;
+        font-size: 14px;
+        color: var(--ink-dim);
+      }
+
+      /* ============ TESTIMONIALS ============ */
+      .testimonials {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+      @media (max-width: 900px) {
+        .testimonials {
+          grid-template-columns: 1fr;
+        }
+      }
+      .testimonial {
+        padding: 32px;
+        background: var(--bg-elev);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+      }
+      .stars {
+        color: var(--clay-soft);
+        font-size: 14px;
+        margin-bottom: 16px;
+        letter-spacing: 2px;
+      }
+      .testimonial p {
+        font-family: "Fraunces", serif;
+        font-size: 18px;
+        line-height: 1.5;
+        margin: 0 0 24px;
+        letter-spacing: -0.01em;
+      }
+      .testimonial-attr {
+        font-size: 13px;
+        color: var(--ink-dim);
+      }
+      .testimonial-attr strong {
+        color: var(--ink);
+        font-weight: 500;
+      }
+
+      /* ============ ESPEN / ABOUT ============ */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 80px;
+        align-items: center;
+      }
+      @media (max-width: 900px) {
+        .about-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+      }
+      .about-portrait {
+        aspect-ratio: 4/5;
+        border-radius: var(--radius-lg);
+        background:
+          linear-gradient(
+            135deg,
+            rgba(201, 111, 63, 0.5),
+            rgba(30, 23, 19, 1)
+          ),
+          radial-gradient(circle at 30% 30%, #3d2a1e, #1a1210);
+        position: relative;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+      .about-portrait::after {
+        content: "E";
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Fraunces", serif;
+        font-size: 240px;
+        color: rgba(245, 243, 238, 0.08);
+        font-weight: 300;
+      }
+      .about-tag {
+        position: absolute;
+        top: 22px;
+        left: 22px;
+        padding: 8px 14px;
+        background: rgba(10, 15, 10, 0.8);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid var(--line-strong);
+        border-radius: 999px;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink);
+      }
+      .about-text h2 {
+        font-size: clamp(32px, 4vw, 48px);
+        line-height: 1.1;
+        margin-bottom: 28px;
+      }
+      .about-text h2 em {
+        color: var(--clay-soft);
+        font-style: italic;
+      }
+      .about-text p {
+        font-size: 16px;
+        color: var(--ink-dim);
+        margin: 0 0 20px;
+      }
+      .about-text p strong {
+        color: var(--ink);
+        font-weight: 500;
+      }
+      .creds {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2px;
+        background: var(--line);
+        margin-top: 36px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        overflow: hidden;
+      }
+      .cred {
+        padding: 18px 20px;
+        background: var(--bg-elev);
+      }
+      .cred strong {
+        display: block;
+        font-family: "Fraunces", serif;
+        font-size: 22px;
+        color: var(--clay-soft);
+        margin-bottom: 2px;
+      }
+      .cred span {
+        font-size: 12px;
+        color: var(--ink-dim);
+      }
+
+      /* ============ BOOKING CTA ============ */
+      .cta-banner {
+        background:
+          radial-gradient(
+            ellipse 80% 60% at 80% 40%,
+            rgba(201, 111, 63, 0.25),
+            transparent 60%
+          ),
+          linear-gradient(135deg, #1a120c 0%, #0d1009 100%);
+        border-block: 1px solid var(--line);
+        position: relative;
+        overflow: hidden;
+      }
+      .cta-banner::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(245, 243, 238, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(245, 243, 238, 0.03) 1px, transparent 1px);
+        background-size: 60px 60px;
+        mask-image: radial-gradient(ellipse 50% 40% at 50% 50%, black, transparent 80%);
+      }
+      .cta-inner {
+        position: relative;
+        max-width: 840px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .cta-inner h2 {
+        font-size: clamp(36px, 4.6vw, 58px);
+        line-height: 1.05;
+        margin-bottom: 20px;
+      }
+      .cta-inner h2 em {
+        color: var(--clay-soft);
+        font-style: italic;
+      }
+      .cta-inner p {
+        font-size: 18px;
+        color: var(--ink-dim);
+        max-width: 560px;
+        margin: 0 auto 36px;
+      }
+      .cta-inner .hero-cta {
+        justify-content: center;
+      }
+
+      /* ============ FOOTER ============ */
+      footer {
+        background: #070a07;
+        border-top: 1px solid var(--line);
+        padding: 64px 28px 32px;
+      }
+      .foot-inner {
+        max-width: var(--max);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 48px;
+      }
+      @media (max-width: 760px) {
+        .foot-inner {
+          grid-template-columns: 1fr 1fr;
+          gap: 32px;
+        }
+      }
+      .foot-brand p {
+        font-size: 14px;
+        color: var(--ink-dim);
+        max-width: 300px;
+        margin: 16px 0 0;
+      }
+      .foot-col h5 {
+        font-family: "Inter", sans-serif;
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        margin: 0 0 18px;
+        font-weight: 500;
+      }
+      .foot-col ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .foot-col li {
+        margin-bottom: 10px;
+      }
+      .foot-col a {
+        color: var(--ink-dim);
+        font-size: 14px;
+        transition: color 0.2s;
+      }
+      .foot-col a:hover {
+        color: var(--ink);
+      }
+      .foot-base {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding-top: 24px;
+        border-top: 1px solid var(--line);
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 16px;
+        font-size: 12px;
+        color: var(--ink-soft);
+      }
+
+      /* ============ UTILS ============ */
+      .scroll-reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .scroll-reveal.visible {
+        opacity: 1;
+        transform: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ================= NAV ================= -->
+    <nav class="nav">
+      <div class="nav-inner">
+        <a href="#" class="logo">
+          <span class="logo-mark"></span>
+          <span>Espen Tennis Academy <em>EST. 2014</em></span>
+        </a>
+        <div class="nav-links">
+          <a href="#kurs">Kurs</a>
+          <a href="#apper">Apper</a>
+          <a href="#bedrift">Bedrift</a>
+          <a href="#espen">Om Espen</a>
+        </div>
+        <a href="#bestill" class="nav-cta">
+          Bestill time
+          <svg viewBox="0 0 16 16" fill="none">
+            <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </nav>
+
+    <!-- ================= HERO ================= -->
+    <header class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-inner">
+        <div>
+          <div class="eyebrow">Tennisakademi · Oslo &amp; digitalt</div>
+          <h1>
+            Tennis for alle aldre — <em>fra første slag til elitenivå.</em>
+          </h1>
+          <p>
+            Fysiske kurs for barn, ungdom og voksne. Digitale apper du kan
+            bruke hjemme. Bedriftstennis for teamet. Én metodikk, bygget over
+            tolv år på banen.
+          </p>
+          <div class="hero-cta">
+            <a href="#bestill" class="btn btn-primary">
+              Bestill din første time
+              <svg viewBox="0 0 16 16" fill="none">
+                <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="#apper" class="btn btn-ghost">Se appene våre</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="court">
+            <div class="court-inner"></div>
+          </div>
+          <div class="ball"></div>
+          <div class="hero-badge">
+            <strong>3 – 99 år</strong>
+            Vi bygger tennisspillere for livet, ikke bare sesongen.
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= STRIP ================= -->
+    <section class="strip" style="padding: 0">
+      <div class="strip-inner">
+        <div class="stat">
+          <div class="stat-n"><em>12</em> år</div>
+          <div class="stat-l">Erfaring på banen</div>
+        </div>
+        <div class="stat">
+          <div class="stat-n"><em>1400</em>+</div>
+          <div class="stat-l">Spillere trent</div>
+        </div>
+        <div class="stat">
+          <div class="stat-n"><em>3</em> apper</div>
+          <div class="stat-l">Under utvikling</div>
+        </div>
+        <div class="stat">
+          <div class="stat-n"><em>4.9</em>/5</div>
+          <div class="stat-l">Snitt fra foreldre</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PILLARS / KURS ================= -->
+    <section id="kurs">
+      <div class="section-inner">
+        <div class="section-head scroll-reveal">
+          <div class="section-label">01 — Tilbud</div>
+          <h2>Tre måter å trene med oss på — <em>samlet ett sted.</em></h2>
+          <p>
+            Vi skilte ut alt av booking, apper og bedriftsavtaler i tre
+            tydelige spor. Ingen rot, ingen halvveise sider. Velg inngangen
+            som passer deg.
+          </p>
+        </div>
+        <div class="pillars">
+          <div class="pillar scroll-reveal">
+            <div class="pillar-n">01</div>
+            <h3>Fysiske kurs</h3>
+            <p>
+              Kurs, privattimer, leirer og trening på bane — bestilling skjer
+              i én samlet kalender.
+            </p>
+            <ul>
+              <li>Minitennis 3–5 år <span>Små grupper</span></li>
+              <li>Barnekurs 6–12 år <span>Nybegynner → viderekommen</span></li>
+              <li>Ungdom &amp; junior <span>Konkurransespor</span></li>
+              <li>Voksenkurs <span>Begynner &amp; erfaren</span></li>
+              <li>Privattimer <span>1-til-1</span></li>
+              <li>Sommerleir &amp; intensivuker <span>Sesongbasert</span></li>
+            </ul>
+            <a href="#bestill" class="pillar-cta">
+              Se kalender og bestill
+              <svg viewBox="0 0 16 16" fill="none" width="14" height="14">
+                <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+
+          <div class="pillar scroll-reveal">
+            <div class="pillar-n">02</div>
+            <h3>Digitale apper</h3>
+            <p>
+              En app per aldersgruppe. Bygget for å brukes hjemme — ikke
+              erstatte banen, men forsterke den.
+            </p>
+            <ul>
+              <li>Minitennis-appen <span>3–6 år · Live</span></li>
+              <li>Kids &amp; Teens <span>6–12 år · Utvikling</span></li>
+              <li>Junior Pro <span>12+ · Kommer</span></li>
+              <li>Adult Performance <span>Styrke &amp; taktikk</span></li>
+              <li>AI-slaganalyse <span>Partner-integrert</span></li>
+              <li>Flerspråklig <span>Norsk i dag, 10 språk 2027</span></li>
+            </ul>
+            <a href="#apper" class="pillar-cta">
+              Utforsk appene
+              <svg viewBox="0 0 16 16" fill="none" width="14" height="14">
+                <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+
+          <div class="pillar scroll-reveal">
+            <div class="pillar-n">03</div>
+            <h3>Bedrift</h3>
+            <p>
+              Tennis som bedriftsgode, kickoff, teambuilding eller
+              ledergruppesesjon — planlagt og levert.
+            </p>
+            <ul>
+              <li>Firmaturneringer <span>10–60 personer</span></li>
+              <li>Ledergruppesesjoner <span>Halv/hel dag</span></li>
+              <li>Kickoff med tennis <span>Aktivitet + mat</span></li>
+              <li>Ansattgoder <span>Månedspakke</span></li>
+              <li>Sponsorpartnere <span>Langsiktig</span></li>
+              <li>Egen kontaktperson <span>Alltid</span></li>
+            </ul>
+            <a href="#bedrift" class="pillar-cta">
+              Se bedriftspakker
+              <svg viewBox="0 0 16 16" fill="none" width="14" height="14">
+                <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PHILOSOPHY ================= -->
+    <section class="philosophy">
+      <div class="section-inner">
+        <div class="philo-grid">
+          <div class="scroll-reveal">
+            <div class="section-label">Metodikken</div>
+            <p class="philo-quote">
+              «En treåring trenger ikke forhånd. Hun trenger å bli kjent med
+              ballen, kroppen sin og banen. <em>Gjør du det riktig nå, kommer
+              alt annet av seg selv senere.»</em>
+            </p>
+            <div class="philo-attr">
+              <div class="philo-avatar">E</div>
+              <div class="philo-attr-text">
+                <strong>Espen Strandberg</strong>
+                <span>Sjefstrener &amp; grunnlegger</span>
+              </div>
+            </div>
+          </div>
+          <div class="principles scroll-reveal">
+            <div class="principle">
+              <div class="principle-n">01</div>
+              <div>
+                <h4>Motorikk før teknikk</h4>
+                <p>
+                  For barn under 8 handler det om balanse, koordinasjon og lek.
+                  Teknikken kommer når kroppen er klar.
+                </p>
+              </div>
+            </div>
+            <div class="principle">
+              <div class="principle-n">02</div>
+              <div>
+                <h4>Små grupper, høy repetisjon</h4>
+                <p>
+                  Maks 6 spillere per trener. Mange ballkontakter i hver økt —
+                  ingen venting i kø.
+                </p>
+              </div>
+            </div>
+            <div class="principle">
+              <div class="principle-n">03</div>
+              <div>
+                <h4>App + bane, ikke app i stedet for bane</h4>
+                <p>
+                  Digitale øvelser bygger vaner mellom treninger. Vi erstatter
+                  ikke trener og motstander.
+                </p>
+              </div>
+            </div>
+            <div class="principle">
+              <div class="principle-n">04</div>
+              <div>
+                <h4>Lær for livet, ikke for sesongen</h4>
+                <p>
+                  Vi bygger spillere som fortsatt spiller tennis når de er 40
+                  — ikke bare medaljevinnere i U10.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= APPS ================= -->
+    <section id="apper" class="apps-bg">
+      <div class="section-inner">
+        <div class="section-head scroll-reveal">
+          <div class="section-label">02 — Digitalt</div>
+          <h2>
+            En app for hver aldersgruppe — <em>bygd for hjemmebruk.</em>
+          </h2>
+          <p>
+            Øvelser, progresjon og små daglige vaner. Foreldre ser hva barna
+            gjør, trenere får data, og innholdet blir oversatt til ti språk
+            etter hvert som vi skalerer globalt.
+          </p>
+        </div>
+        <div class="apps">
+          <div class="app-card scroll-reveal" style="--card-accent: #e8a47a">
+            <div>
+              <div class="app-head">
+                <span class="app-age">Alder 3–6</span>
+                <span class="app-status live">Live 2026</span>
+              </div>
+              <h3>Minitennis-appen</h3>
+              <p>
+                Lekbaserte øvelser foreldre gjør sammen med barnet. 5–10
+                minutter per økt. Motorisk lek, ballvenning og rytme — før
+                racketene kommer frem på banen.
+              </p>
+              <div class="app-tags">
+                <span>Motorikk</span>
+                <span>Ballvenning</span>
+                <span>Forelder + barn</span>
+                <span>Push-varsler</span>
+              </div>
+            </div>
+            <div class="app-meta">
+              <div class="app-price">69 kr <span>/ mnd</span></div>
+              <a href="#" class="pillar-cta">
+                Last ned
+                <svg viewBox="0 0 16 16" fill="none" width="14" height="14">
+                  <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="app-card scroll-reveal" style="--card-accent: #9ed09e">
+            <div>
+              <div class="app-head">
+                <span class="app-age">Alder 6–12</span>
+                <span class="app-status soon">Q3 2026</span>
+              </div>
+              <h3>Kids &amp; Teens</h3>
+              <p>
+                Ettermiddagsvennen for barn som er hjemme alene mellom 12 og
+                16. Streaks, progresjon og sosiale utfordringer — konkurrerer
+                mot TikTok, ikke YouTube-tutorials.
+              </p>
+              <div class="app-tags">
+                <span>Streaks</span>
+                <span>Sosial</span>
+                <span>15 min/dag</span>
+                <span>Venner</span>
+              </div>
+            </div>
+            <div class="app-meta">
+              <div class="app-price">89 kr <span>/ mnd</span></div>
+              <a href="#" class="pillar-cta">
+                Bli varslet
+                <svg viewBox="0 0 16 16" fill="none" width="14" height="14">
+                  <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="app-card scroll-reveal" style="--card-accent: #c96f3f">
+            <div>
+              <div class="app-head">
+                <span class="app-age">Alder 12+</span>
+                <span class="app-status soon">Q1 2027</span>
+              </div>
+              <h3>Junior Pro</h3>
+              <p>
+                For juniorer som vil bli bedre mellom treningene.
+                Tennis-spesifikk styrke, mobilitet og taktisk forståelse — med
+                AI-analyse av egne opptak fra banen.
+              </p>
+              <div class="app-tags">
+                <span>Styrke</span>
+                <span>Mobilitet</span>
+                <span>AI-analyse</span>
+                <span>Taktikk</span>
+              </div>
+            </div>
+            <div class="app-meta">
+              <div class="app-price">129 kr <span>/ mnd</span></div>
+              <a href="#" class="pillar-cta">
+                Bli varslet
+                <svg viewBox="0 0 16 16" fill="none" width="14" height="14">
+                  <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="app-card scroll-reveal" style="--card-accent: #b4a27a">
+            <div>
+              <div class="app-head">
+                <span class="app-age">Voksne</span>
+                <span class="app-status soon">Q2 2027</span>
+              </div>
+              <h3>Adult Performance</h3>
+              <p>
+                For voksne som allerede spiller og vil trene smartere. Styrke,
+                skadeforebygging, mental forberedelse og mønstergjenkjenning
+                — ikke «lær tennis hjemme».
+              </p>
+              <div class="app-tags">
+                <span>Skadeforebygging</span>
+                <span>Mentalt</span>
+                <span>Mønstre</span>
+                <span>Restitusjon</span>
+              </div>
+            </div>
+            <div class="app-meta">
+              <div class="app-price">149 kr <span>/ mnd</span></div>
+              <a href="#" class="pillar-cta">
+                Bli varslet
+                <svg viewBox="0 0 16 16" fill="none" width="14" height="14">
+                  <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TESTIMONIALS ================= -->
+    <section>
+      <div class="section-inner">
+        <div class="section-head scroll-reveal">
+          <div class="section-label">Foreldre &amp; spillere</div>
+          <h2>Det de sier etter første sesong.</h2>
+        </div>
+        <div class="testimonials">
+          <div class="testimonial scroll-reveal">
+            <div class="stars">★★★★★</div>
+            <p>
+              «Datteren vår var 3,5 år da hun startet. Ett år senere er hun
+              den eneste i barnehagen som kan kaste og fange ball med begge
+              hender. Det sier alt om metoden.»
+            </p>
+            <div class="testimonial-attr">
+              <strong>Marte B.</strong> — forelder, Frogner
+            </div>
+          </div>
+          <div class="testimonial scroll-reveal">
+            <div class="stars">★★★★★</div>
+            <p>
+              «Espen gjorde at sønnen vår igjen gleder seg til tirsdager. Etter
+              et år hos en annen klubb hadde han nesten gitt opp.»
+            </p>
+            <div class="testimonial-attr">
+              <strong>Henrik S.</strong> — forelder, Nordstrand
+            </div>
+          </div>
+          <div class="testimonial scroll-reveal">
+            <div class="stars">★★★★★</div>
+            <p>
+              «Vi kjørte kickoff med tennis for 40 ansatte. Alle spilte,
+              ingen satt ute. Første gang et bedriftsarrangement faktisk
+              fungerte for hele gjengen.»
+            </p>
+            <div class="testimonial-attr">
+              <strong>Kari M.</strong> — HR-direktør, Oslo
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section id="espen" class="philosophy">
+      <div class="section-inner">
+        <div class="about-grid">
+          <div class="about-portrait scroll-reveal">
+            <span class="about-tag">Espen Strandberg</span>
+          </div>
+          <div class="about-text scroll-reveal">
+            <div class="section-label">Om grunnleggeren</div>
+            <h2>
+              Tolv år på banen. <em>Spesialist på barnetrening.</em>
+            </h2>
+            <p>
+              Espen Strandberg har trent over <strong>1 400 spillere</strong>
+              siden 2014 — fra tre-åringer som holder racket for første gang,
+              til voksne som vil skjerpe andreserven.
+            </p>
+            <p>
+              Spesialiteten hans er aldersgruppen
+              <strong>3 til 6 år</strong>: en gruppe de store tennisforbundene
+              behandler som en fotnote, men som Espen har bygget en egen
+              metodikk rundt — basert på motorisk utvikling, lek og rytme
+              fremfor formell teknikk.
+            </p>
+            <p>
+              I dag leder han akademiet i Oslo, utvikler en serie digitale
+              apper, og leverer bedriftstennis til selskaper i
+              Oslo-regionen.
+            </p>
+            <div class="creds">
+              <div class="cred">
+                <strong>PTR Certified</strong>
+                <span>Professional Tennis Registry</span>
+              </div>
+              <div class="cred">
+                <strong>NTF Trener III</strong>
+                <span>Norges Tennisforbund</span>
+              </div>
+              <div class="cred">
+                <strong>2014 →</strong>
+                <span>Akademi etablert</span>
+              </div>
+              <div class="cred">
+                <strong>12 klubber</strong>
+                <span>Samarbeidspartnere</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA BANNER ================= -->
+    <section id="bestill" class="cta-banner">
+      <div class="cta-inner scroll-reveal">
+        <div class="section-label" style="display: inline-block">Bestill</div>
+        <h2>Klar til å starte? <em>Første time koster 0.</em></h2>
+        <p>
+          Velg en prøvetime på banen eller last ned minitennis-appen og kom i
+          gang på under ett minutt. Ingen binding, ingen skjulte gebyrer.
+        </p>
+        <div class="hero-cta">
+          <a href="#" class="btn btn-primary">
+            Bestill prøvetime
+            <svg viewBox="0 0 16 16" fill="none">
+              <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="#" class="btn btn-ghost">Last ned appen</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+      <div class="foot-inner">
+        <div class="foot-brand">
+          <div class="logo">
+            <span class="logo-mark"></span>
+            <span>Espen Tennis Academy</span>
+          </div>
+          <p>
+            Tennis for alle aldre — fysiske kurs, digitale apper og
+            bedriftstennis. Etablert Oslo, 2014.
+          </p>
+        </div>
+        <div class="foot-col">
+          <h5>Kurs</h5>
+          <ul>
+            <li><a href="#">Minitennis 3–5</a></li>
+            <li><a href="#">Barnekurs 6–12</a></li>
+            <li><a href="#">Voksenkurs</a></li>
+            <li><a href="#">Privattimer</a></li>
+            <li><a href="#">Sommerleir</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h5>Apper</h5>
+          <ul>
+            <li><a href="#">Minitennis</a></li>
+            <li><a href="#">Kids &amp; Teens</a></li>
+            <li><a href="#">Junior Pro</a></li>
+            <li><a href="#">Adult Performance</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h5>Akademi</h5>
+          <ul>
+            <li><a href="#espen">Om Espen</a></li>
+            <li><a href="#bedrift">Bedrift</a></li>
+            <li><a href="#">Metodikk</a></li>
+            <li><a href="#">Kontakt</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-base">
+        <span>© 2026 Espen Tennis Academy AS · Org. 925 871 234</span>
+        <span>Oslo, Norge · hei@espentennis.no</span>
+      </div>
+    </footer>
+
+    <script>
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+      );
+      document.querySelectorAll(".scroll-reveal").forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>
