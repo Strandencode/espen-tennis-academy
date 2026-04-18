@@ -332,106 +332,38 @@
         aspect-ratio: 4/5;
         border-radius: var(--radius-lg);
         overflow: hidden;
-        background:
-          linear-gradient(
-            135deg,
-            rgba(201, 111, 63, 0.3),
-            rgba(61, 90, 61, 0.3)
-          ),
-          repeating-linear-gradient(
-            45deg,
-            #2a1f18,
-            #2a1f18 3px,
-            #1e1713 3px,
-            #1e1713 6px
-          );
+        background: #1a130d;
         box-shadow: var(--shadow);
       }
-      .hero-visual::before {
+      .hero-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 35%;
+        transition: transform 6s ease;
+      }
+      .hero-visual:hover .hero-img {
+        transform: scale(1.04);
+      }
+      .hero-tint {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            160deg,
+            rgba(10, 15, 10, 0.15) 0%,
+            rgba(10, 15, 10, 0) 40%,
+            rgba(10, 15, 10, 0.85) 100%
+          );
+      }
+      .hero-visual::after {
         content: "";
         position: absolute;
         inset: 0;
-        background:
-          radial-gradient(
-            ellipse at 50% 40%,
-            rgba(255, 220, 180, 0.2),
-            transparent 60%
-          );
-      }
-      .court {
-        position: absolute;
-        inset: 12%;
-        border: 2px solid rgba(245, 243, 238, 0.85);
-        border-radius: 2px;
-      }
-      .court::before,
-      .court::after {
-        content: "";
-        position: absolute;
-        background: rgba(245, 243, 238, 0.85);
-      }
-      .court::before {
-        left: 0;
-        right: 0;
-        top: 50%;
-        height: 2px;
-        transform: translateY(-1px);
-      }
-      .court::after {
-        left: 50%;
-        top: 20%;
-        bottom: 20%;
-        width: 2px;
-        transform: translateX(-1px);
-      }
-      .court-inner {
-        position: absolute;
-        inset: 20%;
-        border: 2px solid rgba(245, 243, 238, 0.85);
-      }
-      .court-inner::before {
-        content: "";
-        position: absolute;
-        left: 50%;
-        top: 0;
-        bottom: 0;
-        width: 2px;
-        background: rgba(245, 243, 238, 0.85);
-        transform: translateX(-1px);
-      }
-      .ball {
-        position: absolute;
-        width: 22px;
-        height: 22px;
-        border-radius: 50%;
-        background: radial-gradient(
-          circle at 30% 30%,
-          #e8f07a,
-          #c9d945 60%,
-          #96a82d
-        );
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4),
-          inset -2px -3px 4px rgba(0, 0, 0, 0.2);
-        top: 40%;
-        left: 55%;
-        animation: bounce 2.4s infinite ease-in-out;
-      }
-      .ball::before,
-      .ball::after {
-        content: "";
-        position: absolute;
-        inset: 2px;
-        border-radius: 50%;
-        border-top: 1px solid rgba(255, 255, 255, 0.7);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.7);
-        transform: rotate(-25deg) scaleX(0.3);
-      }
-      .ball::after {
-        transform: rotate(25deg) scaleX(0.3);
-      }
-      @keyframes bounce {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-14px); }
+        border-radius: var(--radius-lg);
+        box-shadow: inset 0 0 0 1px rgba(245, 243, 238, 0.05);
+        pointer-events: none;
       }
 
       .hero-badge {
@@ -554,7 +486,7 @@
         }
       }
       .pillar {
-        padding: 40px 32px;
+        padding: 0 0 32px;
         background: var(--bg-elev);
         border: 1px solid var(--line);
         border-radius: var(--radius-lg);
@@ -563,17 +495,46 @@
         overflow: hidden;
         display: flex;
         flex-direction: column;
-        min-height: 420px;
+      }
+      .pillar-body {
+        padding: 28px 32px 0;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
       }
       .pillar:hover {
         border-color: var(--line-strong);
         transform: translateY(-4px);
       }
+      .pillar-img {
+        position: relative;
+        aspect-ratio: 16 / 11;
+        overflow: hidden;
+      }
+      .pillar-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .pillar:hover .pillar-img img {
+        transform: scale(1.05);
+      }
+      .pillar-img::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 40%;
+        background: linear-gradient(to bottom, transparent, var(--bg-elev));
+        pointer-events: none;
+      }
       .pillar-n {
         font-family: "Fraunces", serif;
         font-size: 13px;
         color: var(--clay-soft);
-        margin-bottom: 20px;
+        margin-bottom: 18px;
         letter-spacing: 0.05em;
       }
       .pillar h3 {
@@ -821,6 +782,71 @@
         color: var(--ink-dim);
       }
 
+      /* ============ GALLERY STRIP ============ */
+      .gallery-strip {
+        padding: 0;
+        position: relative;
+        border-block: 1px solid var(--line);
+      }
+      .gallery-img {
+        position: relative;
+        aspect-ratio: 21 / 9;
+        overflow: hidden;
+        background: #0f1610;
+      }
+      .gallery-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 35%;
+      }
+      .gallery-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 60px 40px;
+        background: linear-gradient(
+            90deg,
+            rgba(10, 15, 10, 0.85) 0%,
+            rgba(10, 15, 10, 0.5) 45%,
+            rgba(10, 15, 10, 0.1) 100%
+          );
+      }
+      .gallery-overlay-inner {
+        max-width: var(--max);
+        width: 100%;
+        margin: 0 auto;
+      }
+      .gallery-overlay .section-label {
+        margin-bottom: 16px;
+      }
+      .gallery-overlay h2 {
+        font-size: clamp(32px, 4.2vw, 54px);
+        line-height: 1.05;
+        max-width: 640px;
+        margin-bottom: 14px;
+      }
+      .gallery-overlay h2 em {
+        font-style: italic;
+        color: var(--clay-soft);
+      }
+      .gallery-overlay p {
+        font-size: 17px;
+        color: var(--ink-dim);
+        max-width: 520px;
+        margin: 0;
+      }
+      @media (max-width: 760px) {
+        .gallery-img {
+          aspect-ratio: 4 / 5;
+        }
+        .gallery-overlay {
+          padding: 32px 24px;
+        }
+      }
+
       /* ============ TESTIMONIALS ============ */
       .testimonials {
         display: grid;
@@ -876,28 +902,29 @@
       .about-portrait {
         aspect-ratio: 4/5;
         border-radius: var(--radius-lg);
-        background:
-          linear-gradient(
-            135deg,
-            rgba(201, 111, 63, 0.5),
-            rgba(30, 23, 19, 1)
-          ),
-          radial-gradient(circle at 30% 30%, #3d2a1e, #1a1210);
+        background: #1a130d;
         position: relative;
         overflow: hidden;
         box-shadow: var(--shadow);
       }
-      .about-portrait::after {
-        content: "E";
+      .about-portrait img {
         position: absolute;
         inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: "Fraunces", serif;
-        font-size: 240px;
-        color: rgba(245, 243, 238, 0.08);
-        font-weight: 300;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 82% 40%;
+      }
+      .about-portrait::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(10, 15, 10, 0.05) 40%,
+          rgba(10, 15, 10, 0.65) 100%
+        );
+        pointer-events: none;
       }
       .about-tag {
         position: absolute;
@@ -1130,10 +1157,14 @@
           </div>
         </div>
         <div class="hero-visual">
-          <div class="court">
-            <div class="court-inner"></div>
-          </div>
-          <div class="ball"></div>
+          <img
+            class="hero-img"
+            src="images/kids.jpg"
+            alt="Barn på tennisbane med ballnett"
+            loading="eager"
+            fetchpriority="high"
+          />
+          <div class="hero-tint"></div>
           <div class="hero-badge">
             <strong>3 – 99 år</strong>
             Vi bygger tennisspillere for livet, ikke bare sesongen.
@@ -1178,72 +1209,87 @@
         </div>
         <div class="pillars">
           <div class="pillar scroll-reveal">
-            <div class="pillar-n">01</div>
-            <h3>Fysiske kurs</h3>
-            <p>
-              Kurs, privattimer, leirer og trening på bane — bestilling skjer
-              i én samlet kalender.
-            </p>
-            <ul>
-              <li>Minitennis 3–5 år <span>Små grupper</span></li>
-              <li>Barnekurs 6–12 år <span>Nybegynner → viderekommen</span></li>
-              <li>Ungdom &amp; junior <span>Konkurransespor</span></li>
-              <li>Voksenkurs <span>Begynner &amp; erfaren</span></li>
-              <li>Privattimer <span>1-til-1</span></li>
-              <li>Sommerleir &amp; intensivuker <span>Sesongbasert</span></li>
-            </ul>
-            <a href="#bestill" class="pillar-cta">
-              Se kalender og bestill
-              <svg viewBox="0 0 16 16" fill="none" width="14" height="14">
-                <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
+            <div class="pillar-img">
+              <img src="images/adults.jpg" alt="Voksne på tennisbane med trener" loading="lazy" />
+            </div>
+            <div class="pillar-body">
+              <div class="pillar-n">01</div>
+              <h3>Fysiske kurs</h3>
+              <p>
+                Kurs, privattimer, leirer og trening på bane — bestilling
+                skjer i én samlet kalender.
+              </p>
+              <ul>
+                <li>Minitennis 3–5 år <span>Små grupper</span></li>
+                <li>Barnekurs 6–12 år <span>Nybegynner → viderekommen</span></li>
+                <li>Ungdom &amp; junior <span>Konkurransespor</span></li>
+                <li>Voksenkurs <span>Begynner &amp; erfaren</span></li>
+                <li>Privattimer <span>1-til-1</span></li>
+                <li>Sommerleir &amp; intensivuker <span>Sesongbasert</span></li>
+              </ul>
+              <a href="#bestill" class="pillar-cta">
+                Se kalender og bestill
+                <svg viewBox="0 0 16 16" fill="none" width="14" height="14">
+                  <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
           </div>
 
           <div class="pillar scroll-reveal">
-            <div class="pillar-n">02</div>
-            <h3>Digitale apper</h3>
-            <p>
-              En app per aldersgruppe. Bygget for å brukes hjemme — ikke
-              erstatte banen, men forsterke den.
-            </p>
-            <ul>
-              <li>Minitennis-appen <span>3–6 år · Live</span></li>
-              <li>Kids &amp; Teens <span>6–12 år · Utvikling</span></li>
-              <li>Junior Pro <span>12+ · Kommer</span></li>
-              <li>Adult Performance <span>Styrke &amp; taktikk</span></li>
-              <li>AI-slaganalyse <span>Partner-integrert</span></li>
-              <li>Flerspråklig <span>Norsk i dag, 10 språk 2027</span></li>
-            </ul>
-            <a href="#apper" class="pillar-cta">
-              Utforsk appene
-              <svg viewBox="0 0 16 16" fill="none" width="14" height="14">
-                <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
+            <div class="pillar-img">
+              <img src="images/home-play.jpg" alt="Barn leker hjemme med bamse" loading="lazy" />
+            </div>
+            <div class="pillar-body">
+              <div class="pillar-n">02</div>
+              <h3>Digitale apper</h3>
+              <p>
+                En app per aldersgruppe. Bygget for å brukes hjemme — ikke
+                erstatte banen, men forsterke den.
+              </p>
+              <ul>
+                <li>Minitennis-appen <span>3–6 år · Live</span></li>
+                <li>Kids &amp; Teens <span>6–12 år · Utvikling</span></li>
+                <li>Junior Pro <span>12+ · Kommer</span></li>
+                <li>Adult Performance <span>Styrke &amp; taktikk</span></li>
+                <li>AI-slaganalyse <span>Partner-integrert</span></li>
+                <li>Flerspråklig <span>Norsk i dag, 10 språk 2027</span></li>
+              </ul>
+              <a href="#apper" class="pillar-cta">
+                Utforsk appene
+                <svg viewBox="0 0 16 16" fill="none" width="14" height="14">
+                  <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
           </div>
 
           <div class="pillar scroll-reveal">
-            <div class="pillar-n">03</div>
-            <h3>Bedrift</h3>
-            <p>
-              Tennis som bedriftsgode, kickoff, teambuilding eller
-              ledergruppesesjon — planlagt og levert.
-            </p>
-            <ul>
-              <li>Firmaturneringer <span>10–60 personer</span></li>
-              <li>Ledergruppesesjoner <span>Halv/hel dag</span></li>
-              <li>Kickoff med tennis <span>Aktivitet + mat</span></li>
-              <li>Ansattgoder <span>Månedspakke</span></li>
-              <li>Sponsorpartnere <span>Langsiktig</span></li>
-              <li>Egen kontaktperson <span>Alltid</span></li>
-            </ul>
-            <a href="#bedrift" class="pillar-cta">
-              Se bedriftspakker
-              <svg viewBox="0 0 16 16" fill="none" width="14" height="14">
-                <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
+            <div class="pillar-img">
+              <img src="images/corporate.jpg" alt="Bedriftsgruppe på tennisbane" loading="lazy" />
+            </div>
+            <div class="pillar-body">
+              <div class="pillar-n">03</div>
+              <h3>Bedrift</h3>
+              <p>
+                Tennis som bedriftsgode, kickoff, teambuilding eller
+                ledergruppesesjon — planlagt og levert.
+              </p>
+              <ul>
+                <li>Firmaturneringer <span>10–60 personer</span></li>
+                <li>Ledergruppesesjoner <span>Halv/hel dag</span></li>
+                <li>Kickoff med tennis <span>Aktivitet + mat</span></li>
+                <li>Ansattgoder <span>Månedspakke</span></li>
+                <li>Sponsorpartnere <span>Langsiktig</span></li>
+                <li>Egen kontaktperson <span>Alltid</span></li>
+              </ul>
+              <a href="#bedrift" class="pillar-cta">
+                Se bedriftspakker
+                <svg viewBox="0 0 16 16" fill="none" width="14" height="14">
+                  <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -1452,6 +1498,23 @@
       </div>
     </section>
 
+    <!-- ================= GALLERY STRIP ================= -->
+    <section class="gallery-strip">
+      <div class="gallery-img">
+        <img src="images/padel.jpg" alt="Padel og tennis" loading="lazy" />
+        <div class="gallery-overlay">
+          <div class="gallery-overlay-inner scroll-reveal">
+            <div class="section-label">Sporten</div>
+            <h2>Tennis. Padel. <em>Lek for alle aldre.</em></h2>
+            <p>
+              Fra minitennis-racket til padel-finale — innendørs og ute, hele
+              året. Samme metodikk, uansett flate.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ================= TESTIMONIALS ================= -->
     <section>
       <div class="section-inner">
@@ -1501,6 +1564,7 @@
       <div class="section-inner">
         <div class="about-grid">
           <div class="about-portrait scroll-reveal">
+            <img src="images/adults.jpg" alt="Espen Strandberg på tennisbane med spillere" loading="lazy" />
             <span class="about-tag">Espen Strandberg</span>
           </div>
           <div class="about-text scroll-reveal">
